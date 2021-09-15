@@ -1,5 +1,4 @@
 var express = require("express");
-var mysql = require("mysql");
 var connection = require("../helper/dbConnection");
 const router = express.Router();
 const { validationResult, body } = require("express-validator");
@@ -17,14 +16,19 @@ selectGender = (queryString, gender) => {
 selectReligion = (queryString, religion) => {
   switch (religion.toLowerCase()) {
     case "islam":
+    case "muslims":
       return queryString + " cat_numaric=3 ";
+    case "hinduism":
     case "hindu":
+    case "hindi":
       return queryString + " cat_numaric=2 AND urdu_name='Hindi' ";
     case "sikh":
       return queryString + " urdu_name='Sikh' ";
     case "christian":
+    case "christianity":
       return queryString + " origen_id=20 ";
     case "jews":
+    case "jewish":
       return queryString + " urdu_name='hebrew' ";
     default:
       return queryString;
